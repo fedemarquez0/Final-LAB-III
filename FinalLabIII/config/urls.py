@@ -27,6 +27,7 @@ urlpatterns = [
     path('origen/', OrigenSave.as_view()),
     path('variedad/', VariedadSave.as_view()),
     path('estante/', EstanteSave.as_view()),
+    path('vino/<int:pk>', DetalleVino.as_view()),
 ]
 
 if settings.DEBUG:

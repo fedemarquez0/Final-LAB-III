@@ -7,6 +7,7 @@
 <body>
     <h1>Todos los vinos</h1>
     {% for vino in vinos_list %}
+        <h2>ID: {{vino.pk}}</h2>
         <h2>Nombre: {{vino.nombre}}</h2>
         <h2>Bodega: {{vino.bodega}}</h2>
         <h2>Variedad: {{vino.variedad}}</h2>
