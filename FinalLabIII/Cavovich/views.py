@@ -48,3 +48,16 @@ class EstanteSave(CreateView):
     template_name = 'cavovich/estante.html'
     form_class = EstanteForm
     success_url = "/"
+<<<<<<< HEAD
+=======
+
+    def form_valid(self, form):
+        form.save()
+        return super(EstanteForm, self).form_valid(form)
+
+#muestra todos los vinos
+class allVinos(ListView): #sirve para traer toda la info de la base de datos
+    model = Vino
+    template_name = 'cavovich/index.html'
+    context_object_name = 'vinos_list'
+>>>>>>> 8ac090339fb56acf15c24fdc5fed02360a238a40
