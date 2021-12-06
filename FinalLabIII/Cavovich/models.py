@@ -7,15 +7,23 @@ from django.db.models.fields.related import OneToOneField
 
 class Estante(models.Model):
     estante = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.estante
 
 class Variedad(models.Model):
     variedad = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.variedad
 
 class Origen(models.Model):
     origen = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.origen
 
 class Bodega(models.Model):
     bodega = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.bodega
 
 class Vino(models.Model):
     nombre = models.CharField(max_length=100)
@@ -27,7 +35,7 @@ class Vino(models.Model):
     codigo = models.BigIntegerField()
     precio = models.FloatField()
     estante = models.ForeignKey(Estante, on_delete=CASCADE)
-    imagen = models.ImageField(upload_to="catalogo/") #se van a guardar en media/catalogo
+    imagen = models.ImageField(upload_to="catalogo/", null=True, blank=True) #se van a guardar en media/catalogo
 
 class Comentario(models.Model):
     ojo = models.PositiveSmallIntegerField(max_length=10)
