@@ -17,9 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from config import settings
+from Cavovich.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', Vinos.as_view()),
+    path('vino/', VinoSave.as_view()),
+    path('bodega/', BodegaSave.as_view()),
+    path('origen/', OrigenSave.as_view()),
+    path('variedad/', VariedadSave.as_view()),
+    path('estante/', EstanteSave.as_view()),
 ]
 
 if settings.DEBUG:
