@@ -35,7 +35,7 @@ class Vino(models.Model):
     codigo = models.BigIntegerField()
     precio = models.FloatField()
     estante = models.ForeignKey(Estante, on_delete=CASCADE)
-    imagen = models.ImageField(upload_to="catalogo/", null=True, blank=True) #se van a guardar en media/catalogo
+    imagen = models.ImageField(upload_to="catalogo/") #se van a guardar en media/catalogo
 
 class Comentario(models.Model):
     ojo = models.PositiveSmallIntegerField(max_length=10)
