@@ -22,12 +22,14 @@ from Cavovich.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Vinos.as_view()),
-    path('vino/', VinoSave.as_view()),
-    path('bodega/', BodegaSave.as_view()),
-    path('origen/', OrigenSave.as_view()),
-    path('variedad/', VariedadSave.as_view()),
-    path('estante/', EstanteSave.as_view()),
+    path('vino/', VinoCreate.as_view()),
+    path('bodega/', BodegaCreate.as_view()),
+    path('origen/', OrigenCreate.as_view()),
+    path('variedad/', VariedadCreate.as_view()),
+    path('estante/', EstanteCreate.as_view()),
     path('vino/<int:pk>', DetalleVino.as_view()),
+    path('update/<int:pk>/', VinoUpdate.as_view()),
+    path('delete/<int:pk>/', VinoDelete.as_view()),
 ]
 
 if settings.DEBUG:
