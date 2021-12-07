@@ -1,0 +1,5 @@
+<h3>Che vas a eliminar el vino: {{object.nombre}}</h3>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+</form>
