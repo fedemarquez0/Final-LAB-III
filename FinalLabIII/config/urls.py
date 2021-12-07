@@ -30,6 +30,7 @@ urlpatterns = [
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('update/<int:pk>/', VinoUpdate.as_view()),
     path('delete/<int:pk>/', VinoDelete.as_view()),
+    path('stock/<int:id_vino>/<int:cantidad>/', incrementarStock),
 ]
 
 if settings.DEBUG:

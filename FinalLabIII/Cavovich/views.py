@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView, FormView, CreateView, DetailView, UpdateView, DeleteView
+from django.http.request import HttpRequest
 
 from .models import Bodega, Estante, Origen, Variedad, Vino
 from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm
@@ -63,3 +64,9 @@ class VinoDelete(DeleteView):
     form_class = VinoForm
     success_url = "/"
 
+#funcion para incrementar stock
+def incrementarStock(request: HttpRequest, id_vino: int, cantidad: int):
+    vino = Vino.objects.get(id = id_vino)
+    vino.cantidad += cantidad
+    vino.save()
+    return render(request, 'cavovich/stock.html')
