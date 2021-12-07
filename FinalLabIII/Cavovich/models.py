@@ -38,10 +38,10 @@ class Vino(models.Model):
     imagen = models.ImageField(upload_to="catalogo/") #se van a guardar en media/catalogo
 
 class Comentario(models.Model):
-    ojo = models.PositiveSmallIntegerField(max_length=10)
-    nariz = models.PositiveSmallIntegerField(max_length=10)
-    boca = models.PositiveSmallIntegerField(max_length=10)
-    equilibrio_armonia = models.PositiveSmallIntegerField(max_length=10)
+    ojo = models.PositiveSmallIntegerField()
+    nariz = models.PositiveSmallIntegerField()
+    boca = models.PositiveSmallIntegerField()
+    equilibrio_armonia = models.PositiveSmallIntegerField()
     nota = models.TextField()
     vino = OneToOneField(Vino,on_delete=PROTECT)
 
