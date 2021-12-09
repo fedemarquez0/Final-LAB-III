@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vino</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{ form.ojo.errors }} <!-- No se que hace -->
+            {{ form.ojo.label_tag }} <!-- Agrega el label con el nombre del campo -->
+            {{ form.ojo }} <!-- Input del formulario -->
+        </div>
+        <div>
+            {{ form.nariz.errors }}
+            {{ form.nariz.label_tag }}
+            {{ form.nariz }}
+        </div>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
+
+<!-- Informacion sobre los campos del formulario: -->
+<!-- https://docs.djangoproject.com/en/3.2/topics/forms/#looping-over-the-form-s-fields -->

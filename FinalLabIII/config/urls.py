@@ -27,6 +27,7 @@ urlpatterns = [
     path('origen/', OrigenCreate.as_view()),
     path('variedad/', VariedadCreate.as_view()),
     path('estante/', EstanteCreate.as_view()),
+    path('comentario/', ComentarioCreate.as_view()),
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('update/<int:pk>/', VinoUpdate.as_view()),
     path('delete/<int:pk>/', VinoDelete.as_view()),

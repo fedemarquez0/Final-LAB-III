@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import Vino, Bodega, Origen, Variedad, Estante
+from .models import Comentario, Vino, Bodega, Origen, Variedad, Estante
 
 class VinoForm(forms.ModelForm):
     class Meta:
@@ -25,4 +25,9 @@ class VariedadForm(forms.ModelForm):
 class EstanteForm(forms.ModelForm):
     class Meta:
         model = Estante
+        fields = '__all__'
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
         fields = '__all__'

@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView, FormView, CreateView, DetailView, UpdateView, DeleteView
 from django.http.request import HttpRequest
+from django.http.response import HttpResponse
 
-from .models import Bodega, Estante, Origen, Variedad, Vino
-from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm
+from .models import Bodega, Comentario, Estante, Origen, Variedad, Vino
+from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, ComentarioForm
 
 # Create your views here.
 
@@ -50,6 +51,12 @@ class EstanteCreate(CreateView):
     form_class = EstanteForm
     success_url = "/"
 
+class ComentarioCreate(CreateView):
+    model = Comentario
+    template_name = 'cavovich/comentario.html'
+    form_class = ComentarioForm
+    success_url = "/"
+
 #clases para modificar
 class VinoUpdate(UpdateView):
     model = Vino
@@ -69,4 +76,4 @@ def incrementarStock(request: HttpRequest, id_vino: int, cantidad: int):
     vino = Vino.objects.get(id = id_vino)
     vino.cantidad += cantidad
     vino.save()
-    return render(request, 'cavovich/stock.html')
+    return HttpResponse("<h1>Hola, como te va?</h1>")
