@@ -1,203 +1,98 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Godoy Matias & Marquez Federico">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>Cavovich | Catalogo</title>
+{% extends 'cavovich/baseIndex.html' %} <!--con esto indicamos que va a heredar cosas del base.html-->
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/album/">
+{% block content %} <!--Bloque que tenemos definido enm el base.html para que se herede-->
+{% load static %}
+<style>
+  .bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
 
-    
+  @media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+  }
+  }
 
-    <!-- Bootstrap core CSS -->
-    {% load static %}
-    <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+  .center {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+  }
+  
+  .sin-stock {
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  padding: 20px;
+  margin-bottom: 10px;
+}
 
 
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .center {
-          margin-left: auto;
-          margin-right: auto;
-          display: block;
-      }
-      
-      .sin-stock {
-      border: 1px solid #ccc;
-      background-color: #f4f4f4;
-      padding: 20px;
-      margin-bottom: 10px;
-    }
-
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="../../static/cavovich/css/index.css" rel="stylesheet">
-  </head>
-  <body>
-    
-<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">Información</h4>
-          <p class="text-muted">Esta página es a modo de vidriera, para agregar o editar algún producto, por favor iniciar sesión.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Usuario</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Iniciar sesión</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
-        <strong>Cavovich</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
-</header>
+.card {
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 1.5em;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+</style>
 
 <main role="main">
-
   <section class="jumbotron text-center">
     <div class="container">
       <h1>Catálogo de productos</h1>
       <p class="lead text-muted">Para poder modificar o agregar producto alguno primero deberá iniciar sesión.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Iniciar sesión</a>
-        <!-- <a href="#" class="btn btn-secondary my-2"></a> -->
+        <a href="{% url 'login' %}" class="btn btn-primary my-2">Iniciar sesión</a>
       </p>
     </div>
   </section>
-
   <div class="album py-5 bg-light">
     <div class="container">
+      <div class="row">        
 
-      <div class="row">
-        
-        {% for vino in vinos_list %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src="../../media/{{vino.imagen}}"  height="250" style="max-width: 150px; " class="center">
-              <div class="card-body">
-                <h5 class="card-title">{{vino.nombre}}</h5>
-                <p class="card-text">                
-                  {{vino.bodega}} 
-                </p>
-                <p class="card-text"><small class="text-muted">{{vino.cantidad}} unidades disponibles</small></p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Modificar</button>
+        {% for vino in vinos_list %}        
+            <div class="col-md-4">
+              <div style="cursor: pointer;" onclick="window.location='/vino/{{vino.pk}}';" >
+                <div class="card shadow-sm h-100">
+                  <img src="../../media/{{vino.imagen}}"  class="card-img-top">
+                  <div class="card-body">
+                    <h5 class="card-title">{{vino.nombre}}</h5>
+                    <p class="card-text">                
+                      {{vino.bodega}} 
+                    </p>
+                    <p class="card-text"><small class="text-muted">{{vino.cantidad}} unidades disponibles</small></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a class="btn btn-sm btn-outline-secondary" href="/vino/{{vino.pk}}">Ver</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="/update/{{vino.pk}}">Modificar</a>
+                      </div>
+                      {% if vino.cantidad > 0 %}
+                        <span class="badge badge-success">Stock</span>
+                      {% else %}
+                        <span class="badge badge-danger">Sin Stock</span>
+                      {% endif %}
+                    </div>
                   </div>
-                  {% if vino.cantidad > 0 %}
-                    <span class="badge badge-success">Stock</span>
-                  {% else %}
-                    <span class="badge badge-danger">Sin Stock</span>
-                  {% endif %}
                 </div>
               </div>
-            </div>
-          </div> 
-          
+            </div>           
         {% endfor %}
-
-        
-
-        <!-- <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="../assets/img/vinos/Vino tinto Cabernet sauvignon Cafayate Gran Linaje bodega Etchart 750 ml.jpeg"  height="250" style="max-width: 150px; " class="center">
-            <div class="card-body">
-              <h5 class="card-title">
-                Vino tinto Cabernet sauvignon Cafayate Gran Linaje bodega Etchart 750 ml
-              </h5>
-              <p class="card-text">                
-                Shandon
-              </p>
-              <p class="card-text"><small class="text-muted">Ultima unidad disponible</small></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Modificar</button>
-                </div>
-                <span class="badge badge-success">Stock</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="../assets/img/vinos/Vino tinto Malbec y Cabernet Arnaldo B. Gran Reserva bodega Etchart 750 ml.jpeg"  height="250" style="max-width: 150px; " class="center">
-            <div class="card-body">
-              <h5 class="card-title">Vino tinto Malbec y Cabernet Arnaldo B. Gran Reserva bodega Etchart 750 ml</h5>
-              <p class="card-text">                
-                Richitelli
-              </p>
-              <p class="card-text"><small class="text-muted">0 unidades disponibles</small></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Modificar</button>
-                </div>
-                <span class="badge badge-danger">Sin Stock</span>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        
-
-        
-        
       </div>
     </div>
   </div>
-
 </main>
+{% endblock %} <!--Final del bloque-->
 
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Ir al principio</a>
-    </p>
-    <p>Cavovich es &copy; Propiedad de Federico Marquez & Matias Godoy.</p>    
-  </div>
-</footer>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../../static/cavovich/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="{% static 'cavovich/js/bootstrap.bundle.min.js' %}"></script>
-
-      
-  </body>
-</html>

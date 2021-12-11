@@ -21,7 +21,8 @@ from Cavovich.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Vinos.as_view()),
+    path('', Vinos.as_view(), name='inicio'),
+    path('login/', login_pagina, name='login'),
     path('vino/', VinoCreate.as_view()),
     path('bodega/', BodegaCreate.as_view()),
     path('origen/', OrigenCreate.as_view()),
