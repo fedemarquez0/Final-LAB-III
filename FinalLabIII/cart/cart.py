@@ -1,5 +1,5 @@
 from django.conf import settings
-
+from decimal import Decimal
 from Cavovich.models import Vino
  
 class Cart(object):
@@ -14,14 +14,13 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, vino, quantity=1, update_quantity=False):
+    def add(self, product, quantity=1, update_quantity=False):
         """
         Add a product to the cart or update its quantity.
         """
-        print("intentando agregar el producto")
-        product_id = str(vino.pk)
+        product_id = str(product.pk)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0, 'price': str(vino.precio)}
+            self.cart[product_id] = {'quantity': 0, 'price': str(product.precio)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -34,13 +33,13 @@ class Cart(object):
         # mark the session as "modified" to make sure it is saved
         self.session.modified = True
     
-    def remove(self, vino):
+    def remove(self, product):
         """
         Remove a product from the cart
         :param product: 
         :return: 
         """
-        product_id = str(vino.pk)
+        product_id = str(product.pk)
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
@@ -53,8 +52,8 @@ class Cart(object):
         product_ids = self.cart.keys()
         # get the product objects and add them to the cart
         products = Vino.objects.filter(id__in=product_ids)
-        for vino in products:
-            self.cart[str(vino.pk)]['product'] = vino
+        for product in products:
+            self.cart[str(product.pk)]['product'] = product
     
         for item in self.cart.values():
             item['price'] = Decimal(item['price'])

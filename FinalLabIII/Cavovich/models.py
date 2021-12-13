@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.base import Model
 from django.db.models.deletion import CASCADE, PROTECT
 from django.db.models.fields.related import OneToOneField
+from django.utils.html import format_html
 
 # Create your models here.
 
@@ -33,9 +34,9 @@ class Vino(models.Model):
     origen = models.ForeignKey(Origen, on_delete=CASCADE)
     cantidad = models.PositiveSmallIntegerField()
     codigo = models.BigIntegerField()
-    precio = models.FloatField()
+    precio = models.DecimalField(max_digits=8, decimal_places=2)
     estante = models.ForeignKey(Estante, on_delete=CASCADE)
-    imagen = models.ImageField(upload_to="catalogo/") #se van a guardar en media/catalogo
+    imagen = models.ImageField(upload_to="catalogo/", blank=True) #se van a guardar en media/catalogo
 
 class Comentario(models.Model):
     ojo = models.PositiveSmallIntegerField()

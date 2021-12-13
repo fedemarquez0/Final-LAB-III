@@ -28,6 +28,9 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('cart/',include(('cart.urls', 'cart'), namespace='cart')),
+
     path('', Vinos.as_view(), name='inicio'),
     path('login/', login_pagina, name='login'),
     path('vino/', VinoCreate.as_view()),
@@ -40,8 +43,7 @@ urlpatterns = [
     path('update/<int:pk>/', VinoUpdate.as_view()),
     path('delete/<int:pk>/', VinoDelete.as_view()),
     path('stock/<int:id_vino>/<int:cantidad>/', incrementarStock, name='incrementarStock'),
-    path('cart/',include(('cart.urls', 'cart'), namespace='cart')),
-    # url(r'^', include('shop.urls')), 
+    
 ]
 
 if settings.DEBUG:
