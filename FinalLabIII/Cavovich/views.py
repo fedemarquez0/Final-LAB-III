@@ -1,24 +1,20 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import ListView, TemplateView, FormView, CreateView, DetailView, UpdateView, DeleteView
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
-
 from .models import Bodega, Comentario, Estante, Origen, Variedad, Vino
 from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, ComentarioForm, LoginForm
 
-
 from cart.forms import CartAddProductForm
+
 # Create your views here.
 
-def product_detail(request, id, slug):
-    # product = get_object_or_404(Vino, id=id, slug=slug, available=True)
-    print("entra product_detail")
-    product = Vino.objects.get(id = id, slug=slug, available=True)
+def product_detail(request, id):
+    vino = get_object_or_404(Vino, pk=id, available=True)
     cart_product_form = CartAddProductForm()
-    return render(request, 'cavovich/wine.html',
-                  {'product': product, 'cart_product_form': cart_product_form})
+    return render(request, 'cavovich/wine.html', {'vino': vino, 'cart_product_form': cart_product_form})
 
 def login_pagina(request):
     forms = LoginForm()

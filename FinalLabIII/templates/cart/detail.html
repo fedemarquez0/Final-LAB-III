@@ -17,17 +17,25 @@
         </thead>
         <tbody>
         {% for item in cart %}
-            {% with vino=item.product %}
+            {% with product=item.product %}
                 <tr>
                     <td>
-                        <a href="{{ vino.imagen }}">
-                            <img src="/media/{{ vino.imagen }}">
+                        <a href="/vino/{{product.id}}">
+                            <img src="{{ product.imagen.url }}" width="50px">
                         </a>
                     </td>
-                    <td>{{ vino.nombre }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ product.nombre }}</td>
                     <td>
-                        <a href="{% url "cart:cart_remove" vino.pk %}">Remove</a>
+                        <form action="{% url "cart:cart_add" product.id %}"
+                              method="post">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <input type="submit" value="Update">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{% url "cart:cart_remove" product.id %}">Remove</a>
                     </td>
                     <td class="num">${{ item.price }}</td>
                     <td class="num">${{ item.total_price }}</td>
@@ -45,4 +53,5 @@
         <a href="{% url "inicio" %}" class="button light">Seguir comprando</a>
         <a href="#" class="button">Ir a pagar</a>
     </p>
-{% endblock %}  
+
+{% endblock %}

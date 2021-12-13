@@ -85,19 +85,19 @@
                                 <p class="card-text">{{vino.cantidad}}</p>                            
                             </div>
                         </div>  
-                    <form class="form-horizontal" action="{% url 'cart:cart_add' vino.pk %}" method="post">
-                        {{ cart_product_form }}
-                        {% csrf_token %}
-
-                        <div class="form-group product-stock product-available row visible">
-                            <label class="col-sm-3 col-md-3 form-control-label"></label>
-                            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-3">
-                                <input type="submit" class="adc btn btn-primary" value="Añadir al carrito">
-                                <a href="javascript:history.back()" class="btn btn-link btn-sm" title="Continue Shopping">← Regresar</a>
+                    
+                        <p>${{ vino.precio }}</p>
+                        <form class="form-horizontal" action="{% url "cart:cart_add" vino.id %}" method="post">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <div class="form-group product-stock product-available row visible">
+                                <label class="col-sm-3 col-md-3 form-control-label"></label>
+                                <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-3">
+                                    <input type="submit" class="adc btn btn-primary" value="Añadir al carrito">
+                                    <a href="javascript:history.back()" class="btn btn-link btn-sm" title="Continue Shopping">← Regresar</a>
+                                </div>
                             </div>
-                        </div>                        
-
-                    </form>
+                        </form>
                     <script>
                         $('#product-sharing a').click(function(){
                             return !window.open(this.href, 'Share', 'width=640,height=300');

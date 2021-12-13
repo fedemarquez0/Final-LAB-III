@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# session settings
+# Session settings
 CART_SESSION_ID = 'cart'
 
 

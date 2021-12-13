@@ -9,25 +9,19 @@ from .forms import CartAddProductForm
 # Create your views here.
 @require_POST
 def cart_add(request, product_id):
-    print("entra a cart_add")
     cart = Cart(request)
-    product = get_object_or_404(Vino, id=product_id)    
-    form = CartAddProductForm(request.POST)
-    print(product.bodega)
-    print(type(form))
-    if form.is_valid():
-        print("el formulario es valido")
-        cd = form.cleaned_data
-        cart.add(product=product, quantity=cd['quantity'],
-                 update_quantity=cd['update'])
+    product = get_object_or_404(Vino, pk=product_id)
+    cart.add(product=product, quantity=1, update_quantity=True)
     return redirect('cart:cart_detail')
 
 def cart_remove(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(Vino, id=product_id)
+    product = get_object_or_404(Vino, pk=product_id)
     cart.remove(product)
     return redirect('cart:cart_detail')
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, 'cavovich/detail.html', {'cart': cart})
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+    return render(request, 'cart/detail.html', {'cart': cart})
