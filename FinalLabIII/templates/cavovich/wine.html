@@ -8,6 +8,14 @@
     <div class="bg-light">
         <br>
         <div class="container card bg-white">   
+            <div  class="text-right">
+                <br>
+                <a style="cursor: pointer;" onclick="window.location='/update/{{vino.pk}}';"> 
+                    <div class="text-muted">
+                        <i class="fas fa-edit"></i> Modificar
+                    </div>
+                </a>
+            </div>            
             <div class="row">
                 <div class="col-sm-6">                    
                     <!-- Imagen del producto -->
@@ -93,7 +101,18 @@
                             <div class="form-group product-stock product-available row visible">
                                 <label class="col-sm-3 col-md-3 form-control-label"></label>
                                 <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-3">
-                                    <input type="submit" class="adc btn btn-primary" value="Añadir al carrito">
+                                    {% if vino.cantidad > 0 %}
+                                        <button type="submit" class="btn btn-primary my-2" >
+                                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                                        </button>                                        
+                                    {% else %}
+                                        <button type="submit" class="btn btn-primary my-2" disabled>
+                                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                                        </button>
+                                    {% endif %}
+                                    
+                                    
+                                    
                                     <a href="javascript:history.back()" class="btn btn-link btn-sm" title="Continue Shopping">← Regresar</a>
                                 </div>
                             </div>

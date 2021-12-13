@@ -3,55 +3,72 @@
  
  
 {% block content %}
-    <h1>Tu carrito</h1>
-    <table class="cart">
-        <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Eliminar</th>
-            <th>P. unitario</th>
-            <th>Total</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
-                <tr>
-                    <td>
-                        <a href="/vino/{{product.id}}">
-                            <img src="{{ product.imagen.url }}" width="50px">
-                        </a>
-                    </td>
-                    <td>{{ product.nombre }}</td>
-                    <td>
-                        <form action="{% url "cart:cart_add" product.id %}"
-                              method="post">
-                            {{ item.update_quantity_form.quantity }}
-                            {{ item.update_quantity_form.update }}
-                            <input type="submit" value="Update">
-                            {% csrf_token %}
-                        </form>
-                    </td>
-                    <td>
-                        <a href="{% url "cart:cart_remove" product.id %}">Remove</a>
-                    </td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
-                </tr>
-            {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url "inicio" %}" class="button light">Seguir comprando</a>
-        <a href="#" class="button">Ir a pagar</a>
-    </p>
+<main role="main ">   
+    <div class="bg-light">
+        <br>        
+        <div class="container card bg-white">   
+            <div class="col-12">
+                <br>
+                <h1>Tu carrito</h1>     
+                <br>           
+                <div class="table-responsive">            
+                    <table class="table table-hover" style="width: 100%">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Unidades</th>
+                            <th scope="col">Eliminar</th>
+                            <th scope="col">P. unitario</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in cart %}
+                            {% with product=item.product %}
+                                <tr>
+                                    <td>
+                                        <a href="/vino/{{product.id}}">
+                                            <img src="{{ product.imagen.url }}" width="50px">
+                                        </a>
+                                    </td>
+                                    <td>{{ product.nombre }}</td>
+                                    <td>
+                                        <form action="{% url "cart:cart_add" product.id %}"
+                                            method="post">
+                                            {{ item.update_quantity_form.quantity }}
+                                            {{ item.update_quantity_form.update }}
+                                            <input type="submit" value="Actualizar" class="btn btn-outline-secondary">
+                                            {% csrf_token %}
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="{% url "cart:cart_remove" product.id %}"><p class="text-muted"><i class="fas fa-pen"></i> Eliminar</p></a>
+                                    </td>
+                                    <td class="num">${{ item.price }}</td>
+                                    <td class="num">${{ item.total_price }}</td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                        <tr class="total">
+                            <td>Total</td>
+                            <td colspan="4"></td>
+                            <td class="num">${{ cart.get_total_price }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            
+            <p class="text-right">
+                <a href="{% url "inicio" %}" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i> Seguir comprando</a>
+                <a href="#" class="btn btn-primary">Finalizar</a>
+            </p>
+
+            <br>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>    
 
 {% endblock %}
