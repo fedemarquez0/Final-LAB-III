@@ -19,9 +19,17 @@ from django.conf.urls.static import static
 from config import settings
 from Cavovich.views import *
 
+
+from django.conf import settings
+from django.conf.urls import url, include
+from cart import *
+from django.contrib import admin
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Vinos.as_view()),
+    path('', Vinos.as_view(), name='inicio'),
+    path('login/', login_pagina, name='login'),
     path('vino/', VinoCreate.as_view()),
     path('bodega/', BodegaCreate.as_view()),
     path('origen/', OrigenCreate.as_view()),
@@ -31,7 +39,9 @@ urlpatterns = [
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('update/<int:pk>/', VinoUpdate.as_view()),
     path('delete/<int:pk>/', VinoDelete.as_view()),
-    path('stock/<int:id_vino>/<int:cantidad>/', incrementarStock),
+    path('stock/<int:id_vino>/<int:cantidad>/', incrementarStock, name='incrementarStock'),
+    path('cart/',include(('cart.urls', 'cart'), namespace='cart')),
+    # url(r'^', include('shop.urls')), 
 ]
 
 if settings.DEBUG:

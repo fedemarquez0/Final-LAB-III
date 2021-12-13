@@ -1,12 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView, FormView, CreateView, DetailView, UpdateView, DeleteView
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+
 
 from .models import Bodega, Comentario, Estante, Origen, Variedad, Vino
-from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, ComentarioForm
+from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, ComentarioForm, LoginForm
 
+
+from cart.forms import CartAddProductForm
 # Create your views here.
+
+def product_detail(request, id, slug):
+    # product = get_object_or_404(Vino, id=id, slug=slug, available=True)
+    print("entra product_detail")
+    product = Vino.objects.get(id = id, slug=slug, available=True)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'cavovich/wine.html',
+                  {'product': product, 'cart_product_form': cart_product_form})
+
+def login_pagina(request):
+    forms = LoginForm()
+    if request.method == 'POST':
+        forms = LoginForm(request.POST)
+        if forms.is_valid():
+            username = forms.cleaned_data['username']
+            password = forms.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('')
+    context = {'form': forms}
+    return render(request, 'cavovich/signin.html', context)
+
+def logout_pagina(request):
+    logout(request)
+    return redirect('cavovich/signin.html')
 
 #muestra todos los vinos:
 class Vinos(ListView): #sirve para traer toda la info de la base de datos
@@ -26,6 +56,7 @@ class VinoCreate(CreateView):
     template_name = 'cavovich/vino.html'
     form_class = VinoForm
     success_url = "/"
+    
 
 class BodegaCreate(CreateView):
     model = Bodega
@@ -71,9 +102,11 @@ class VinoDelete(DeleteView):
     form_class = VinoForm
     success_url = "/"
 
+
 #funcion para incrementar stock
 def incrementarStock(request: HttpRequest, id_vino: int, cantidad: int):
     vino = Vino.objects.get(id = id_vino)
     vino.cantidad += cantidad
     vino.save()
-    return HttpResponse("<h1>Hola, como te va?</h1>")
+    # messages.info(request, 'Your password has been changed successfully!')
+    return redirect("inicio")

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="Godoy Matias & Marquez Federico">
+            <meta name="generator" content="Hugo 0.88.1">
+            <title>Cavovich | Catalogo</title>
+            <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/album/">  
+            <!-- Bootstrap core CSS -->
+            {% load static %}
+            <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+            
+            <!-- Custom styles for this template -->
+            <link href="../../static/cavovich/css/index.css" rel="stylesheet">
+    </head>
+    <body>   
+        <header>
+            <div class="collapse bg-dark" id="navbarHeader">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">Información</h4>
+                    <p class="text-muted">Esta página es a modo de vidriera, para agregar o editar algún producto, por favor iniciar sesión.</p>
+                  </div>
+                  <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Usuario</h4>
+                    <ul class="list-unstyled">
+                      <li><a href="{% url 'login' %}" class="text-white">Iniciar sesión</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+              <div class="container d-flex justify-content-between">
+                <a href="{% url 'inicio' %}" class="navbar-brand d-flex align-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg>
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
+                  <strong>Cavovich</strong>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              </div>
+            </div>
+        </header>
+        {% comment %} En este bloque se cargará el main {% endcomment %}
+        {% block content %}
+        {% endblock content %}
+
+        <footer class="text-muted">
+            <div class="container">
+              <p class="float-right">
+                <a href="#">Ir al principio</a>
+              </p>
+              <p>Cavovich es &copy; Propiedad de Federico Marquez & Matias Godoy.</p>    
+            </div>
+          </footer>
+          <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+          <script>window.jQuery || document.write('<script src="../../static/cavovich/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="{% static 'cavovich/js/bootstrap.bundle.min.js' %}"></script> 
+    </body>
+</html>

@@ -1,13 +1,112 @@
-<h1>Soy un Vino</h1>
-<h2>ID: {{vino.pk}}</h2>
-<h2>Nombre: {{vino.nombre}}</h2>
-<h2>Bodega: {{vino.bodega}}</h2>
-<h2>Variedad: {{vino.variedad}}</h2>
-<h2>Cosecha: {{vino.cosecha}}</h2>
-<h2>Origen: {{vino.origen}}</h2>
-<h2>Cantidad: {{vino.cantidad}}</h2>
-<h2>Codigo: {{vino.codigo}}</h2>
-<h2>Precio: {{vino.precio}}</h2>
-<h2>Estante: {{vino.estante}}</h2>
-<h2>Imagen:</h2>
-<img src="/media/{{vino.imagen}}" width="300px">
+
+
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+<main role="main ">   
+    <div class="bg-light">
+        <br>
+        <div class="container card bg-white">   
+            <div class="row">
+                <div class="col-sm-6">                    
+                    <!-- Imagen del producto -->
+                    <div class="">
+                        <div class="card-body">
+                            <img src="/media/{{vino.imagen}}" width="300px" class="card-img">
+                        </div>
+                    </div>                    
+                </div>        
+                <div class="col-sm-6 card-body"> 
+                                           
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="card-title">
+                                    {{vino.nombre}}                                    
+                                </h1>           
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    {% if vino.cantidad > 0 %}
+                                        <span class="badge badge-success">Stock</span>
+                                    {% else %}
+                                        <span class="badge badge-danger">Sin Stock</span>
+                                    {% endif %}
+                                </h6>                     
+                            </div>
+                            {% comment %} <div class="col-3">
+                                
+                            </div>                             {% endcomment %}
+                        </div>                            
+                        <div class="form-group row">
+                            <div class="col-sm-8 col-md-9">
+                                <h1 class="card-title">$ {{vino.precio}}</span>
+                            </div>
+                        </div>                  
+                        <!-- Detalle del producto  -->             
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 form-control-label text-muted"><b>Bodega:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.bodega}}</p>
+                            </div>
+                        </div>                         
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 text-muted"><b>Variedad:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.variedad}}</p>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 form-control-label text-muted"><b>Cosecha:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.cosecha}}</p>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 form-control-label text-muted"><b>Origen:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.origen}}</p>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 form-control-label text-muted"><b>Codigo:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.codigo}}</p>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-md-3 form-control-label text-muted"><b>Estante:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.estante}}</p>
+                            </div>
+                        </div>                     
+                        <div class="form-group row">
+                            <label for="Quantity" class="col-sm-3 col-md-3 form-control-label text-muted"><b>Cantidad:</b></label>
+                            <div class="col-sm-9 col-md-9">
+                                <p class="card-text">{{vino.cantidad}}</p>                            
+                            </div>
+                        </div>  
+                    <form class="form-horizontal" action="{% url 'cart:cart_add' vino.pk %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+
+                        <div class="form-group product-stock product-available row visible">
+                            <label class="col-sm-3 col-md-3 form-control-label"></label>
+                            <div class="col-sm-8 col-sm-offset-3 col-md-9 col-md-offset-3">
+                                <input type="submit" class="adc btn btn-primary" value="Añadir al carrito">
+                                <a href="javascript:history.back()" class="btn btn-link btn-sm" title="Continue Shopping">← Regresar</a>
+                            </div>
+                        </div>                        
+
+                    </form>
+                    <script>
+                        $('#product-sharing a').click(function(){
+                            return !window.open(this.href, 'Share', 'width=640,height=300');
+                        });
+                    </script> 
+                </div>
+            </div>  
+        </div>
+        <br>
+    </div>    
+</main>
+{% endblock %}
