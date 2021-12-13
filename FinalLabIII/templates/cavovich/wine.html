@@ -93,8 +93,6 @@
                                 <p class="card-text">{{vino.cantidad}}</p>                            
                             </div>
                         </div>  
-                    
-                        <p>${{ vino.precio }}</p>
                         <form class="form-horizontal" action="{% url "cart:cart_add" vino.id %}" method="post">
                             {{ cart_product_form }}
                             {% csrf_token %}

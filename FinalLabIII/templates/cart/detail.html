@@ -33,15 +33,7 @@
                                         </a>
                                     </td>
                                     <td>{{ product.nombre }}</td>
-                                    <td>
-                                        <form action="{% url "cart:cart_add" product.id %}"
-                                            method="post">
-                                            {{ item.update_quantity_form.quantity }}
-                                            {{ item.update_quantity_form.update }}
-                                            <input type="submit" value="Actualizar" class="btn btn-outline-secondary">
-                                            {% csrf_token %}
-                                        </form>
-                                    </td>
+                                    <td>{{ item.quantity }}</td>
                                     <td>
                                         <a href="{% url "cart:cart_remove" product.id %}"><p class="text-muted"><i class="fas fa-pen"></i> Eliminar</p></a>
                                     </td>
@@ -61,7 +53,10 @@
             
             <p class="text-right">
                 <a href="{% url "inicio" %}" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i> Seguir comprando</a>
-                <a href="#" class="btn btn-primary">Finalizar</a>
+                <form action="{% url 'cart:decrementarStock' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Finalizar</button>
+                </form>
             </p>
 
             <br>
@@ -70,5 +65,4 @@
         <br>
     </div>
 </div>    
-
 {% endblock %}

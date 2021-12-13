@@ -38,6 +38,11 @@ class Vino(models.Model):
     estante = models.ForeignKey(Estante, on_delete=CASCADE)
     imagen = models.ImageField(upload_to="catalogo/", blank=True) #se van a guardar en media/catalogo
 
+    def stock(this, cantidad):
+        print("Entro nashe")
+        this.cantidad -= cantidad
+        this.save()
+
 class Comentario(models.Model):
     ojo = models.PositiveSmallIntegerField()
     nariz = models.PositiveSmallIntegerField()
