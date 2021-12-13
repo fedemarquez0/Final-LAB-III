@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# session settings
+CART_SESSION_ID = 'cart'
+
 
 # Application definition
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Cavovich',
+    'cart',
 ]
 
 MIDDLEWARE = [
