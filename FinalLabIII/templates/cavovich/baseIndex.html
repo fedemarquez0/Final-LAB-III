@@ -207,21 +207,21 @@
         <header class="header" id="header">
           <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
             <div> 
-              <button type="button" class="btn btn-outline-primary">
-                <i class="fas fa-shopping-cart"></i> 
-                {% with total_items=cart|length %}
+              
+              {% with total_items=cart|length %}
+                <a href="{% url "cart:cart_detail" %}">
+                  <button type="button" class="btn btn-outline-primary">
+                    <i class="fas fa-shopping-cart"></i> 
                     {% if cart|length > 0 %}
-                        Tu pedido:
-                        <a href="{% url "cart:cart_detail" %}">
-                            {{ total_items }} item{{ total_items|pluralize }},
-                            ${{ cart.get_total_price }}
-                        </a>
+                      Tu pedido:                        
+                      {{ total_items }} item{{ total_items|pluralize }},
+                      ${{ cart.get_total_price }}                        
                     {% else %}
-                        Vacío
+                      Vacío
                     {% endif %}
-                {% endwith %}
-              </button>
-              {% comment %} <img src="https://i.imgur.com/hczKIze.jpg" alt="">  {% endcomment %}
+                  </button>
+                </a>
+              {% endwith %}              
             </div>
         </header>
         <div class="l-navbar" id="nav-bar">
