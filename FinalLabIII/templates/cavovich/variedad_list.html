@@ -1,0 +1,15 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<a href="/variedad/create">Agregar</a>
+
+{% for variedad in variedad_list %}
+    <p>{{variedad}}</p>
+    <a href="/variedad/update/{{variedad.id}}">Editar</a>
+    <a href="/variedad/delete/{{variedad.id}}">Eliminar</a>
+
+{% endfor %}
+
+{% endblock %}

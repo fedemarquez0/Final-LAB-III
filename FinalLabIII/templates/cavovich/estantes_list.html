@@ -1,0 +1,15 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<a href="/estante/create">Agregar</a>
+
+{% for estante in estantes_list %}
+    <p>{{estante}}</p>
+    <a href="/estante/update/{{estante.id}}">Editar</a>
+    <a href="/estante/delete/{{estante.id}}">Eliminar</a>
+
+{% endfor %}
+
+{% endblock %}

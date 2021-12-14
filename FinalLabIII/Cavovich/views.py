@@ -90,77 +90,92 @@ class BodegaDelete(DeleteView): #Eliminar
     success_url = "/bodega"
 
 #Origen:
+class OrigenList(ListView): #Listar
+    model = Origen
+    template_name = 'cavovich/origen_list.html'
+    context_object_name = 'origen_list'
+
 class OrigenCreate(CreateView): #Crear
     model = Origen
     template_name = 'cavovich/origen.html'
     form_class = OrigenForm
-    success_url = "/"
+    success_url = "/origen"
 
 class OrigenUpdate(UpdateView): #Modificar
     model = Origen
     template_name = 'cavovich/origen.html'
     form_class = OrigenForm
-    success_url = "/"
+    success_url = "/origen"
 
 class OrigenDelete(DeleteView): #Eliminar
     model = Origen
     template_name = 'cavovich/eliminar.html'
     form_class = OrigenForm
-    success_url = "/"
+    success_url = "/origen"
 
 #Variedad:
+class VariedadList(ListView): #Listar
+    model = Variedad
+    template_name = 'cavovich/variedad_list.html'
+    context_object_name = 'variedad_list'
+
 class VariedadCreate(CreateView): #Crear
     model = Variedad
     template_name = 'cavovich/variedad.html'
     form_class = VariedadForm
-    success_url = "/"
+    success_url = "/variedad"
 
 class VariedadUpdate(UpdateView): #Modificar
     model = Variedad
     template_name = 'cavovich/variedad.html'
     form_class = VariedadForm
-    success_url = "/"
+    success_url = "/variedad"
 
 class VariedadDelete(DeleteView): #Eliminar
     model = Variedad
     template_name = 'cavovich/eliminar.html'
     form_class = VariedadForm
-    success_url = "/"
+    success_url = "/variedad"
 
 #Estante:
+class EstanteList(ListView): #Listar
+    model = Estante
+    template_name = 'cavovich/estantes_list.html'
+    context_object_name = 'estantes_list'
+
 class EstanteCreate(CreateView): #Crear
     model = Estante
     template_name = 'cavovich/estante.html'
     form_class = EstanteForm
-    success_url = "/"
+    success_url = "/estante"
 
 class EstanteUpdate(UpdateView): #Modificar
     model = Estante
     template_name = 'cavovich/estante.html'
     form_class = EstanteForm
-    success_url = "/"
+    success_url = "/estante"
 
 class EstanteDelete(DeleteView): #Eliminar
     model = Estante
     template_name = 'cavovich/eliminar.html'
     form_class = EstanteForm
-    success_url = "/"
+    success_url = "/estante"
 
 #Comentario:
-class ComentarioCreate(CreateView): #Crear
-    model = Comentario
-    template_name = 'cavovich/comentario.html'
-    form_class = ComentarioForm
-    success_url = "/"
+# class ComentarioCreate(CreateView): #Crear
+#     model = Comentario
+#     template_name = 'cavovich/comentario.html'
+#     form_class = ComentarioForm
+#     success_url = "/"
 
-class ComentarioUpdate(UpdateView): #Modificar
-    model = Comentario
-    template_name = 'cavovich/comentario.html'
-    form_class = ComentarioForm
-    success_url = "/"
+# class ComentarioUpdate(UpdateView): #Modificar
+#     model = Comentario
+#     template_name = 'cavovich/comentario.html'
+#     form_class = ComentarioForm
+#     success_url = "/"
 
-class ComentarioDelete(DeleteView): #Eliminar
-    model = Comentario
-    template_name = 'cavovich/eliminar.html'
-    form_class = ComentarioForm
-    success_url = "/"
+# class ComentarioDelete(DeleteView): #Eliminar
+#     model = Comentario
+#     template_name = 'cavovich/eliminar.html'
+#     form_class = ComentarioForm
+#     success_url = "/"

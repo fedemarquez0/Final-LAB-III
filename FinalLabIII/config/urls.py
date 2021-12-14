@@ -44,14 +44,17 @@ urlpatterns = [
     path('bodega/update/<int:pk>/', BodegaUpdate.as_view()),
     path('bodega/delete/<int:pk>/', BodegaDelete.as_view()),
 
+    path('origen', OrigenList.as_view()),
     path('origen/create/', OrigenCreate.as_view()),
     path('origen/update/<int:pk>/', OrigenUpdate.as_view()),
     path('origen/delete/<int:pk>/', OrigenDelete.as_view()),
 
+    path('variedad', VariedadList.as_view()),
     path('variedad/create/', VariedadCreate.as_view()),
     path('variedad/update/<int:pk>/', VariedadUpdate.as_view()),
     path('variedad/delete/<int:pk>/', VariedadDelete.as_view()),
 
+    path('estante', EstanteList.as_view()),
     path('estante/create/', EstanteCreate.as_view()),
     path('estante/update/<int:pk>/', EstanteUpdate.as_view()),
     path('estante/delete/<int:pk>/', EstanteDelete.as_view()),
