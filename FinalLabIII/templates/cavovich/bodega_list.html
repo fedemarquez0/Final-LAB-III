@@ -1,0 +1,15 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<a href="/bodega/create">Agregar</a>
+
+{% for bodega in bodegas_list %}
+    <p>{{bodega}}</p>
+    <a href="/bodega/update/{{bodega.id}}">Editar</a>
+    <a href="/bodega/delete/{{bodega.id}}">Eliminar</a>
+
+{% endfor %}
+
+{% endblock %}

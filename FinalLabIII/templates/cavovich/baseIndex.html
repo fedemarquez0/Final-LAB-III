@@ -226,11 +226,13 @@
         </header>
         <div class="l-navbar" id="nav-bar">
           <nav class="nav">
-              <div> <a href="#" class="nav_logo"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg> <span class="nav_logo-name">Cavovich</span> </a>
+              <div> <a href="{% url 'inicio' %}"  class="nav_logo"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg> <span class="nav_logo-name">Cavovich</span> </a>
                   <div class="nav_list"> 
-                    <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Vinos</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Bodegas</span> </a> 
-                    <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Origen</span> </a>
+                    <a href="{% url 'verVinos' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Vinos</span> </a> 
+                    <a href="{% url 'verBodega' %}" class="nav_link"> <i class='bx bx-box nav_icon'></i> <span class="nav_name">Bodegas</span> </a> 
+                    <a href="{% url 'verOrigen' %}" class="nav_link"> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Origen</span> </a>
+                    <a href="{% url 'verEstantes' %}" class="nav_link"> <i class="fas fa-grip-lines"></i> <span class="nav_name">Estantes</span> </a>
+                    <a href="{% url 'verVariedad' %}" class="nav_link"> <i class="fas fa-seedling"></i> <span class="nav_name">Variedad</span> </a>
                   </div>
               </div> 
                 <a href="{% url 'login' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Iniciar sesión</span> </a>

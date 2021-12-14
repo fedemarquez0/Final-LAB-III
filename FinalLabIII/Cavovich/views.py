@@ -11,11 +11,13 @@ from cart.forms import CartAddProductForm
 
 # Create your views here.
 
+#crea el agregar al carrito
 def product_detail(request, id):
     vino = get_object_or_404(Vino, pk=id, available=True)
     cart_product_form = CartAddProductForm()
     return render(request, 'cavovich/wine.html', {'vino': vino, 'cart_product_form': cart_product_form})
 
+#login
 def login_pagina(request):
     forms = LoginForm()
     if request.method == 'POST':
@@ -34,75 +36,146 @@ def logout_pagina(request):
     logout(request)
     return redirect('cavovich/signin.html')
 
-#muestra todos los vinos:
-class Vinos(ListView): #sirve para traer toda la info de la base de datos
+#Vino:
+class Vinos(ListView): #Listar
     model = Vino
     template_name = 'cavovich/index.html'
     context_object_name = 'vinos_list'
 
-#muestra un solo vino por ID:
-class DetalleVino(DetailView):
+class DetalleVino(DetailView): #vino por ID:
     model = Vino
     template_name = 'cavovich/wine.html'
     context_object_name = 'vino'
 
-#clases para crear
-class VinoCreate(CreateView):
-    model = Vino
-    template_name = 'cavovich/vino.html'
-    form_class = VinoForm
-    success_url = "/"
-    
-
-class BodegaCreate(CreateView):
-    model = Bodega
-    template_name = 'cavovich/bodega.html'
-    form_class = BodegaForm
-    success_url = "/"
-
-class OrigenCreate(CreateView):
-    model = Origen
-    template_name = 'cavovich/origen.html'
-    form_class = OrigenForm
-    success_url = "/"
-
-class VariedadCreate(CreateView):
-    model = Variedad
-    template_name = 'cavovich/variedad.html'
-    form_class = VariedadForm
-    success_url = "/"
-
-class EstanteCreate(CreateView):
-    model = Estante
-    template_name = 'cavovich/estante.html'
-    form_class = EstanteForm
-    success_url = "/"
-
-class ComentarioCreate(CreateView):
-    model = Comentario
-    template_name = 'cavovich/comentario.html'
-    form_class = ComentarioForm
-    success_url = "/"
-
-#clases para modificar
-class VinoUpdate(UpdateView):
+class VinoCreate(CreateView): #Crear
     model = Vino
     template_name = 'cavovich/vino.html'
     form_class = VinoForm
     success_url = "/"
 
-#clases para eliminar
-class VinoDelete(DeleteView):
+class VinoUpdate(UpdateView): #Modificar
+    model = Vino
+    template_name = 'cavovich/vino.html'
+    form_class = VinoForm
+    success_url = "/"
+
+class VinoDelete(DeleteView): #Eliminar
     model = Vino
     template_name = 'cavovich/eliminar.html'
     form_class = VinoForm
     success_url = "/"
+    
+#Bodega:
+class BodegaList(ListView): #Listar
+    model = Bodega
+    template_name = 'cavovich/bodega_list.html'
+    context_object_name = 'bodegas_list'
 
+class BodegaCreate(CreateView): #Crear
+    model = Bodega
+    template_name = 'cavovich/bodega.html'
+    form_class = BodegaForm
+    success_url = "/bodega"
 
-#funcion para incrementar stock
-def incrementarStock(request: HttpRequest, id_vino: int, cantidad: int):
-    vino = Vino.objects.get(id = id_vino)
-    vino.cantidad += cantidad
-    vino.save()
-    # messages.info(request, 'Your password has been changed successfully!')
-    return redirect("inicio")
+class BodegaUpdate(UpdateView): #Modificar
+    model = Bodega
+    template_name = 'cavovich/bodega.html'
+    form_class = BodegaForm
+    success_url = "/bodega"
+
+class BodegaDelete(DeleteView): #Eliminar
+    model = Bodega
+    template_name = 'cavovich/eliminar.html'
+    form_class = BodegaForm
+    success_url = "/bodega"
+
+#Origen:
+class OrigenList(ListView): #Listar
+    model = Origen
+    template_name = 'cavovich/origen_list.html'
+    context_object_name = 'origen_list'
+
+class OrigenCreate(CreateView): #Crear
+    model = Origen
+    template_name = 'cavovich/origen.html'
+    form_class = OrigenForm
+    success_url = "/origen"
+
+class OrigenUpdate(UpdateView): #Modificar
+    model = Origen
+    template_name = 'cavovich/origen.html'
+    form_class = OrigenForm
+    success_url = "/origen"
+
+class OrigenDelete(DeleteView): #Eliminar
+    model = Origen
+    template_name = 'cavovich/eliminar.html'
+    form_class = OrigenForm
+    success_url = "/origen"
+
+#Variedad:
+class VariedadList(ListView): #Listar
+    model = Variedad
+    template_name = 'cavovich/variedad_list.html'
+    context_object_name = 'variedad_list'
+
+class VariedadCreate(CreateView): #Crear
+    model = Variedad
+    template_name = 'cavovich/variedad.html'
+    form_class = VariedadForm
+    success_url = "/variedad"
+
+class VariedadUpdate(UpdateView): #Modificar
+    model = Variedad
+    template_name = 'cavovich/variedad.html'
+    form_class = VariedadForm
+    success_url = "/variedad"
+
+class VariedadDelete(DeleteView): #Eliminar
+    model = Variedad
+    template_name = 'cavovich/eliminar.html'
+    form_class = VariedadForm
+    success_url = "/variedad"
+
+#Estante:
+class EstanteList(ListView): #Listar
+    model = Estante
+    template_name = 'cavovich/estantes_list.html'
+    context_object_name = 'estantes_list'
+
+class EstanteCreate(CreateView): #Crear
+    model = Estante
+    template_name = 'cavovich/estante.html'
+    form_class = EstanteForm
+    success_url = "/estante"
+
+class EstanteUpdate(UpdateView): #Modificar
+    model = Estante
+    template_name = 'cavovich/estante.html'
+    form_class = EstanteForm
+    success_url = "/estante"
+
+class EstanteDelete(DeleteView): #Eliminar
+    model = Estante
+    template_name = 'cavovich/eliminar.html'
+    form_class = EstanteForm
+    success_url = "/estante"
+
+#Comentario:
+# class ComentarioCreate(CreateView): #Crear
+#     model = Comentario
+#     template_name = 'cavovich/comentario.html'
+#     form_class = ComentarioForm
+#     success_url = "/"
+
+# class ComentarioUpdate(UpdateView): #Modificar
+#     model = Comentario
+#     template_name = 'cavovich/comentario.html'
+#     form_class = ComentarioForm
+#     success_url = "/"
+
+# class ComentarioDelete(DeleteView): #Eliminar
+#     model = Comentario
+#     template_name = 'cavovich/eliminar.html'
+#     form_class = ComentarioForm
+#     success_url = "/"

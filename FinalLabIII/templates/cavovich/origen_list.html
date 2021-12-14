@@ -1,0 +1,15 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<a href="/origen/create">Agregar</a>
+
+{% for origen in origen_list %}
+    <p>{{origen}}</p>
+    <a href="/origen/update/{{origen.id}}">Editar</a>
+    <a href="/origen/delete/{{origen.id}}">Eliminar</a>
+
+{% endfor %}
+
+{% endblock %}

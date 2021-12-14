@@ -36,7 +36,7 @@ class Vino(models.Model):
     codigo = models.BigIntegerField()
     precio = models.DecimalField(max_digits=8, decimal_places=2)
     estante = models.ForeignKey(Estante, on_delete=CASCADE)
-    imagen = models.ImageField(upload_to="catalogo/", blank=True) #se van a guardar en media/catalogo
+    imagen = models.ImageField(upload_to="catalogo/", default='catalogo/default.png') #se van a guardar en media/catalogo
 
     def stock(this, cantidad):
         print("Entro nashe")
