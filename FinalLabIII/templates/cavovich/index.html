@@ -63,7 +63,7 @@
     <div class="container">
       <div class="row">        
 
-        {% for vino in vinos_list %}        
+        {% for vino in vinos_list %}
             <div class="col-md-4">
               <div style="cursor: pointer;" onclick="window.location='/vino/{{vino.pk}}';" >
                 <div class="card shadow-sm h-100">
@@ -71,7 +71,7 @@
                   <div class="card-body">
                     <h5 class="card-title">{{vino.nombre}}</h5>
                     <p class="card-text">                
-                      {{vino.bodega}} 
+                      {{vino.bodega}}
                     </p>
                     <p class="card-text"><small class="text-muted">{{vino.cantidad}} unidades disponibles</small>
 
