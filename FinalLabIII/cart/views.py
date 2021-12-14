@@ -32,4 +32,4 @@ def decrementarStock(request):
         item['product'].stock(item['quantity'])
     cart.clear()
     cart = {}
-    return redirect('cart:cart_detail')
+    return redirect('/')
