@@ -31,19 +31,34 @@ urlpatterns = [
 
     path('cart/',include(('cart.urls', 'cart'), namespace='cart')),
 
-    path('', Vinos.as_view(), name='inicio'),
     path('login/', login_pagina, name='login'),
+
+    path('', Vinos.as_view(), name='inicio'),
     path('vino/', VinoCreate.as_view()),
-    path('bodega/', BodegaCreate.as_view()),
-    path('origen/', OrigenCreate.as_view()),
-    path('variedad/', VariedadCreate.as_view()),
-    path('estante/', EstanteCreate.as_view()),
-    path('comentario/', ComentarioCreate.as_view()),
     path('vino/<int:pk>', DetalleVino.as_view()),
-    path('update/<int:pk>/', VinoUpdate.as_view()),
-    path('delete/<int:pk>/', VinoDelete.as_view()),
-    path('stock/<int:id_vino>/<int:cantidad>/', incrementarStock, name='incrementarStock'),
-    
+    path('vino/update/<int:pk>/', VinoUpdate.as_view()),
+    path('vino/delete/<int:pk>/', VinoDelete.as_view()),
+
+    path('bodega', BodegaList.as_view()),
+    path('bodega/create/', BodegaCreate.as_view()),
+    path('bodega/update/<int:pk>/', BodegaUpdate.as_view()),
+    path('bodega/delete/<int:pk>/', BodegaDelete.as_view()),
+
+    path('origen/create/', OrigenCreate.as_view()),
+    path('origen/update/<int:pk>/', OrigenUpdate.as_view()),
+    path('origen/delete/<int:pk>/', OrigenDelete.as_view()),
+
+    path('variedad/create/', VariedadCreate.as_view()),
+    path('variedad/update/<int:pk>/', VariedadUpdate.as_view()),
+    path('variedad/delete/<int:pk>/', VariedadDelete.as_view()),
+
+    path('estante/create/', EstanteCreate.as_view()),
+    path('estante/update/<int:pk>/', EstanteUpdate.as_view()),
+    path('estante/delete/<int:pk>/', EstanteDelete.as_view()),
+
+    # path('comentario/create/', ComentarioCreate.as_view()),
+    # path('comentario/update/<int:pk>/', ComentarioUpdate.as_view()),
+    # path('comentario/delete/<int:pk>/', ComentarioDelete.as_view()),
 ]
 
 if settings.DEBUG:
