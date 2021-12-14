@@ -34,27 +34,27 @@ urlpatterns = [
     path('login/', login_pagina, name='login'),
 
     path('', Vinos.as_view(), name='inicio'),
-    path('vino/', VinoCreate.as_view()),
+    path('vino/', VinoCreate.as_view(), name='verVinos'),
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('vino/update/<int:pk>/', VinoUpdate.as_view()),
     path('vino/delete/<int:pk>/', VinoDelete.as_view()),
 
-    path('bodega', BodegaList.as_view()),
+    path('bodega/', BodegaList.as_view(), name='verBodega'),
     path('bodega/create/', BodegaCreate.as_view()),
     path('bodega/update/<int:pk>/', BodegaUpdate.as_view()),
     path('bodega/delete/<int:pk>/', BodegaDelete.as_view()),
 
-    path('origen', OrigenList.as_view()),
+    path('origen/', OrigenList.as_view(), name='verOrigen'),
     path('origen/create/', OrigenCreate.as_view()),
     path('origen/update/<int:pk>/', OrigenUpdate.as_view()),
     path('origen/delete/<int:pk>/', OrigenDelete.as_view()),
 
-    path('variedad', VariedadList.as_view()),
+    path('variedad/', VariedadList.as_view(), name='verVariedad'),
     path('variedad/create/', VariedadCreate.as_view()),
     path('variedad/update/<int:pk>/', VariedadUpdate.as_view()),
     path('variedad/delete/<int:pk>/', VariedadDelete.as_view()),
 
-    path('estante', EstanteList.as_view()),
+    path('estante/', EstanteList.as_view(), name='verEstantes'),
     path('estante/create/', EstanteCreate.as_view()),
     path('estante/update/<int:pk>/', EstanteUpdate.as_view()),
     path('estante/delete/<int:pk>/', EstanteDelete.as_view()),

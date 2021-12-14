@@ -7,17 +7,298 @@
             <meta name="author" content="Godoy Matias & Marquez Federico">
             <meta name="generator" content="Hugo 0.88.1">
             <title>Cavovich | Catalogo</title>
-            <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/album/">  
             <!-- Bootstrap core CSS -->
             {% load static %}
             <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
             <link href="{% static 'plugins/fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
+            <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
             
             <!-- Custom styles for this template -->
-            <link href="../../static/cavovich/css/index.css" rel="stylesheet">
+            {% comment %} <link href="../../static/cavovich/css/index.css" rel="stylesheet"> {% endcomment %}
+            <!-- Custom styles for this template -->
+            <style>@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+              :root {
+                  --header-height: 3rem;
+                  --nav-width: 68px;
+                  --first-color: #4723D9;
+                  --first-color-light: #AFA5D9;
+                  --white-color: #F7F6FB;
+                  --body-font: 'Nunito', sans-serif;
+                  --normal-font-size: 1rem;
+                  --z-fixed: 100
+              }
+              
+              *,
+              ::before,
+              ::after {
+                  box-sizing: border-box
+              }
+              
+              body {
+                  position: relative;
+                  margin: var(--header-height) 0 0 0;
+                  padding: 0 1rem;
+                  font-family: var(--body-font);
+                  font-size: var(--normal-font-size);
+                  transition: .5s
+              }
+              
+              a {
+                  text-decoration: none
+              }
+              
+              .header {
+                  width: 100%;
+                  height: var(--header-height);
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 0 1rem;
+                  background-color: var(--white-color);
+                  z-index: var(--z-fixed);
+                  transition: .5s
+              }
+              
+              .header_toggle {
+                  color: var(--first-color);
+                  font-size: 1.5rem;
+                  cursor: pointer
+              }
+              
+              .header_img {
+                  width: 35px;
+                  height: 35px;
+                  display: flex;
+                  justify-content: center;
+                  border-radius: 50%;
+                  overflow: hidden
+              }
+              
+              .header_img img {
+                  width: 40px
+              }
+              
+              .l-navbar {
+                  position: fixed;
+                  top: 0;
+                  left: -30%;
+                  width: var(--nav-width);
+                  height: 100vh;
+                  background-color: var(--first-color);
+                  padding: .5rem 1rem 0 0;
+                  transition: .5s;
+                  z-index: var(--z-fixed)
+              }
+              
+              .nav {
+                  height: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  overflow: hidden
+              }
+              
+              .nav_logo,
+              .nav_link {
+                  display: grid;
+                  grid-template-columns: max-content max-content;
+                  align-items: center;
+                  column-gap: 1rem;
+                  padding: .5rem 0 .5rem 1.5rem
+              }
+              
+              .nav_logo {
+                  margin-bottom: 2rem
+              }
+              
+              .nav_logo-icon {
+                  font-size: 1.25rem;
+                  color: var(--white-color)
+              }
+              
+              .nav_logo-name {
+                  color: var(--white-color);
+                  font-weight: 700
+              }
+              
+              .nav_link {
+                  position: relative;
+                  color: var(--first-color-light);
+                  margin-bottom: 1.5rem;
+                  transition: .3s
+              }
+              
+              .nav_link:hover {
+                  color: var(--white-color)
+              }
+              
+              .nav_icon {
+                  font-size: 1.25rem
+              }
+              
+              .show {
+                  left: 0
+              }
+              
+              .body-pd {
+                  padding-left: calc(var(--nav-width) + 1rem)
+              }
+              
+              .active {
+                  color: var(--white-color)
+              }
+              
+              .active::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  width: 2px;
+                  height: 32px;
+                  background-color: var(--white-color)
+              }
+              
+              .height-100 {
+                  height: 100vh
+              }
+              
+              @media screen and (min-width: 768px) {
+                  body {
+                      margin: calc(var(--header-height) + 1rem) 0 0 0;
+                      padding-left: calc(var(--nav-width) + 2rem)
+                  }
+              
+                  .header {
+                      height: calc(var(--header-height) + 1rem);
+                      padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+                  }
+              
+                  .header_img {
+                      width: 40px;
+                      height: 40px
+                  }
+              
+                  .header_img img {
+                      width: 45px
+                  }
+              
+                  .l-navbar {
+                      left: 0;
+                      padding: 1rem 1rem 0 0
+                  }
+              
+                  .show {
+                      width: calc(var(--nav-width) + 156px)
+                  }
+              
+                  .body-pd {
+                      padding-left: calc(var(--nav-width) + 188px)
+                  }
+              }
+            </style>
+
+
     </head>
-    <body>   
-        <header>
+    <body oncontextmenu='return false' class='snippet-body'>   
+      <body id="body-pd" >
+        <header class="header" id="header">
+          <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <div> 
+              
+              {% with total_items=cart|length %}
+                <a href="{% url "cart:cart_detail" %}">
+                  <button type="button" class="btn btn-outline-primary">
+                    <i class="fas fa-shopping-cart"></i> 
+                    {% if cart|length > 0 %}
+                      Tu pedido:                        
+                      {{ total_items }} item{{ total_items|pluralize }},
+                      ${{ cart.get_total_price }}                        
+                    {% else %}
+                      Vacío
+                    {% endif %}
+                  </button>
+                </a>
+              {% endwith %}              
+            </div>
+        </header>
+        <div class="l-navbar" id="nav-bar">
+          <nav class="nav">
+              <div> <a href="{% url 'inicio' %}"  class="nav_logo"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg> <span class="nav_logo-name">Cavovich</span> </a>
+                  <div class="nav_list"> 
+                    <a href="{% url 'verVinos' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Vinos</span> </a> 
+                    <a href="{% url 'verBodega' %}" class="nav_link"> <i class='bx bx-box nav_icon'></i> <span class="nav_name">Bodegas</span> </a> 
+                    <a href="{% url 'verOrigen' %}" class="nav_link"> <i class='bx bx-map nav_icon'></i> <span class="nav_name">Origen</span> </a>
+                    <a href="{% url 'verEstantes' %}" class="nav_link"> <i class="fas fa-grip-lines"></i> <span class="nav_name">Estantes</span> </a>
+                    <a href="{% url 'verVariedad' %}" class="nav_link"> <i class="fas fa-seedling"></i> <span class="nav_name">Variedad</span> </a>
+                  </div>
+              </div> 
+                <a href="{% url 'login' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Iniciar sesión</span> </a>
+          </nav>
+        </div>
+        <!--Container Main start-->
+        <div class="height-100 bg-light">
+            {% block content %}
+            {% endblock content %}
+
+            <footer class="text-muted">
+              <br>
+              <div class="container">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <p>Cavovich es &copy; Propiedad de Federico Marquez & Matias Godoy.</p>    
+                  </div>
+                  <div>
+                    <a href="#"><i class="fas fa-chevron-up"></i></a>
+                  </div>
+                </div>
+          </footer>
+          <script src="{% static 'cavovich/js/bootstrap.bundle.min.js' %}"></script> 
+          <script type='text/Javascript'>document.addEventListener("DOMContentLoaded", function(event) {
+
+            const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+            const toggle = document.getElementById(toggleId),
+            nav = document.getElementById(navId),
+            bodypd = document.getElementById(bodyId),
+            headerpd = document.getElementById(headerId)
+            
+            // Validate that all variables exist
+            if(toggle && nav && bodypd && headerpd){
+            toggle.addEventListener('click', ()=>{
+            // show navbar
+            nav.classList.toggle('show')
+            // change icon
+            toggle.classList.toggle('bx-x')
+            // add padding to body
+            bodypd.classList.toggle('body-pd')
+            // add padding to header
+            headerpd.classList.toggle('body-pd')
+            })
+            }
+            }
+            
+            showNavbar('header-toggle','nav-bar','body-pd','header')
+            
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
+            
+            function colorLink(){
+            if(linkColor){
+            linkColor.forEach(l=> l.classList.remove('active'))
+            this.classList.add('active')
+            }
+            }
+            linkColor.forEach(l=> l.addEventListener('click', colorLink))
+            
+            // Your code to run since DOM is loaded and ready
+            });
+          </script>
+        </div>
+      </body>
+  <!--Container Main end-->
+        {% comment %} <header>
             <div class="collapse bg-dark" id="navbarHeader">
               <div class="container">
                 <div class="row">
@@ -45,34 +326,30 @@
                       {% endwith %}
                   </div>
                 </div>
-              </div>
+              </div>            
             </div>
             <div class="navbar navbar-dark bg-dark shadow-sm">
-              <div class="container d-flex justify-content-between">
-                <a href="{% url 'inicio' %}" class="navbar-brand d-flex align-items-center">
+              <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M11 17.916V20H9v2h6v-2h-2v-2.084c3.162-.402 5.849-2.66 6.713-5.793.264-.952.312-2.03.143-3.206l-.866-6.059A1 1 0 0 0 18 2H6a1 1 0 0 0-.99.858l-.865 6.058c-.169 1.177-.121 2.255.143 3.206.863 3.134 3.55 5.392 6.712 5.794zM17.133 4l.57 4H6.296l.571-4h10.266z"></path></svg>
-                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> -->
                   <strong>Cavovich</strong>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
               </div>
             </div>
-        </header>
+        </header> {% endcomment %}
         {% comment %} En este bloque se cargará el main {% endcomment %}
-        {% block content %}
-        {% endblock content %}
+        
 
-        <footer class="text-muted">
-            <div class="container">
-              <p class="float-right">
-                <a href="#"><i class="fas fa-chevron-up"></i></a>
-              </p>
-              <p>Cavovich es &copy; Propiedad de Federico Marquez & Matias Godoy.</p>    
-            </div>
-        </footer>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../../static/cavovich/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="{% static 'cavovich/js/bootstrap.bundle.min.js' %}"></script> 
+        
+        {% comment %} <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../static/cavovich/js/vendor/jquery.slim.min.js"><\/script>')</script>
+         {% endcomment %}
+        
+        
+        {% comment %} BARRA LATERAL {% endcomment %}
+        
     </body>
 </html>
