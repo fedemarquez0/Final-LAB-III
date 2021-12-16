@@ -92,9 +92,13 @@
       </div>
       <div class="row height d-flex justify-content-center align-items-center">
         <div class="col-md-8">
-            <div class="search"> <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder=""> <button class="btn btn-primary">Buscar</button> </div>
+            <div class="search"> <i class="fa fa-search"></i>
+              <form action="{% url 'inicio' %}" method="get">
+                <input type="text" class="form-control" placeholder="" name="search" value="{{buscador}}">
+                <button class="btn btn-primary">Buscar</button>
+              </form> </div>
         </div>
-    </div>
+      </div>
     </div>
   </section>
   <div class="album py-5 bg-light">

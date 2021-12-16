@@ -26,6 +26,8 @@ def cart_detail(request):
     return render(request, 'cart/detail.html', {'cart': cart})
 
 def decrementarStock(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     cart = Cart(request)
     for item in cart:
         print(item)
