@@ -44,6 +44,8 @@ def loginLogin(request):
     return render(request, 'cavovich/login.html', context)
 
 def loginSignin(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     forms = LoginForm()
     if request.method == 'POST':
         forms = LoginForm(request.POST)
@@ -80,10 +82,15 @@ def loginLogout(request):
     return redirect('/')
 
 #Vino:
-class Vinos(ListView): #Listar
-    model = Vino
-    template_name = 'cavovich/index.html'
-    context_object_name = 'vinos_list'
+def vinos(request): #Listar (opcion para buscar)
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        if search == None:
+            all_vinos = Vino.objects.all()
+            return render(request, 'cavovich/index.html', {'vinos_list':all_vinos, 'buscador':''})
+        else:
+            vinos_list = Vino.objects.filter(nombre__contains = search)
+            return render(request, 'cavovich/index.html', {'vinos_list':vinos_list, 'buscador': search})
 
 class DetalleVino(DetailView): #vino por ID:
     model = Vino
@@ -94,7 +101,6 @@ class DetalleVino(DetailView): #vino por ID:
         context = super().get_context_data(**kwargs)
         context['dolar'] = ("%.2f" % (get_valor() * float(context['vino'].precio)))
         return context
-
 
 class VinoCreate(LoginRequiredMixin, CreateView): #Crear
     login_url = 'login'
@@ -111,6 +117,7 @@ class VinoUpdate(LoginRequiredMixin, UpdateView): #Modificar
     success_url = "/"
 
 class VinoDelete(LoginRequiredMixin, DeleteView): #Eliminar
+    login_url = 'login'
     model = Vino
     template_name = 'cavovich/eliminar.html'
     form_class = VinoForm
