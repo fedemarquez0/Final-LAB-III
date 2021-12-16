@@ -50,11 +50,3 @@ class Comentario(models.Model):
     equilibrio_armonia = models.PositiveSmallIntegerField()
     nota = models.TextField()
     vino = OneToOneField(Vino,on_delete=PROTECT)
-
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
-    password = models.CharField(max_length=50)
-    fecha_baja = models.DateField()
-
