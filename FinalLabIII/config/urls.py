@@ -38,7 +38,7 @@ urlpatterns = [
     path('password/', loginPassword, name='password'),
 
     path('', Vinos.as_view(), name='inicio'),
-    path('vino/', VinoCreate.as_view(), name='verVinos'),
+    path('vino/', VinoCreate.as_view(), name='crearVino'),
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('vino/update/<int:pk>/', VinoUpdate.as_view()),
     path('vino/delete/<int:pk>/', VinoDelete.as_view()),

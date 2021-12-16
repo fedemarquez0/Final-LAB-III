@@ -11,27 +11,104 @@
             {% load static %}
             <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
             <!-- Custom styles for this template -->
-            <link href="../../static/cavovich/css/signin.css" rel="stylesheet">
+            <link href="../../static/cavovich/css/main.css" rel="stylesheet">
+            <link href="../../static/cavovich/css/util.css" rel="stylesheet">
 
-            <style>
-              .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-              }
 
-              @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                  font-size: 3.5rem;
-                }
-              }
-            </style>
+            <!--===============================================================================================-->
+              <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+            <!--===============================================================================================-->
+              <link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+            <!--===============================================================================================-->
+              <link rel="stylesheet" type="text/css" href="{% static 'plugins/animate/animate.css' %}">
+            <!--===============================================================================================-->	
+              <link rel="stylesheet" type="text/css" href="{% static 'plugins/css-hamburgers/hamburgers.min.css' %}">
+            <!--===============================================================================================-->
+              <link rel="stylesheet" type="text/css" href="{% static 'plugins/animsition/css/animsition.min.css' %}">
+            <!--===============================================================================================-->
+              {% comment %} <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"> {% endcomment %}
+            <!--===============================================================================================-->	
+              {% comment %} <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"> {% endcomment %}
+            <!--===============================================================================================-->
+
+
       </head>
-      <body class="text-center">    
-        <form class="form-signin" method="POST"> 
+      <body style="background-color: #666666;">    
+        <div class="limiter">
+          <div class="container-login100">
+            <div class="wrap-login100">
+              <form class="login100-form validate-form" method="POST"> 
+                {% csrf_token %}
+                <span class="login100-form-title p-b-43">
+                  ¡Hola! Ingresá tu usuario
+                </span>
+                
+                
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                  {% comment %} <input class="input100" type="text" name="email"> {% endcomment %}
+                  {{ form.username }}
+                  <span class="focus-input100"></span>
+                  <span class="label-input100">Usuario</span>
+                </div>
+                
+                
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                  {% comment %} <input class="input100" type="password" name="pass"> {% endcomment %}
+                  {{ form.password }}
+                  <span class="focus-input100"></span>
+                  <span class="label-input100">Contraseña</span>
+                </div>
+                
+
+                <div class="flex-sb-m w-full p-t-3 p-b-32">
+                  <div class="contact100-form-checkbox">
+                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                    <label class="label-checkbox100" for="ckb1">
+                      Recordarme
+                    </label>
+                  </div>
+      
+                  <div>
+                    <a href="#" class="txt1">
+                      Olvidaste la contraseña?
+                    </a>
+                  </div>
+                </div>
+            
+      
+                <div class="container-login100-form-btn">
+                  <button class="login100-form-btn" type="submit">
+                    Ingresar
+                  </button>
+                </div>
+                
+                <div class="text-center p-t-46 p-b-20">
+                  {% if messages %}
+                    {% for message in messages %}
+                      <div class="alert alert-danger" role="alert">
+                        {{message}}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+      
+                {% comment %} <div class="login100-form-social flex-c-m">
+                  <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                    <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                  </a>
+      
+                  <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                  </a>
+                </div> {% endcomment %}
+              </form>
+      
+              <div class="login100-more" style="background-image: url('{% static 'cavovich/img/bg-01.jpg' %}');">
+              </div>
+            </div>
+          </div>
+
+        {% comment %} <form class="form-signin" method="POST"> 
           {% csrf_token %}
           <img class="mb-4" src="../../static/cavovich/img/logo_transparente.png" alt="" width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
@@ -56,6 +133,6 @@
           <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar
           </button>
           <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-        </form>
+        </form> {% endcomment %}
       </body>
 </html>
