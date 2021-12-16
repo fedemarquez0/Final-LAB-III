@@ -78,3 +78,10 @@ class LoginForm(forms.Form):
         'placeholder': 'Contraseña',
         'type': 'password'
     }))
+
+class PasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Contraseña',
+        'type': 'password'
+    }))

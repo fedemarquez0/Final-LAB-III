@@ -31,7 +31,11 @@ urlpatterns = [
 
     path('cart/',include(('cart.urls', 'cart'), namespace='cart')),
 
-    path('login/', login_pagina, name='login'),
+    path('usuarios/', loginUsuarios, name='usuarios'),
+    path('login/', loginLogin, name='login'),
+    path('signin/', loginSignin, name='signin'),
+    path('logout/', loginLogout, name='logout'),
+    path('password/', loginPassword, name='password'),
 
     path('', Vinos.as_view(), name='inicio'),
     path('vino/', VinoCreate.as_view(), name='verVinos'),
