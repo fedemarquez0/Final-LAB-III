@@ -12,7 +12,7 @@
             <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
             <link href="{% static 'plugins/fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
             <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
-            
+            <link rel="icon" type="image/x-icon" href="{% static 'cavovich/img/favicon.ico' %}">
             <!-- Custom styles for this template -->
             {% comment %} <link href="../../static/cavovich/css/index.css" rel="stylesheet"> {% endcomment %}
             <!-- Custom styles for this template -->
@@ -218,8 +218,9 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'password' %}">Cambiar contraseña</a></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="{% url 'signin' %}"> <i class="fas fa-plus"></i> Crear nueva cuenta</a></li>
+                  <li><a class="dropdown-item" href="{% url 'password' %}"> <i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}"> <i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
                 </ul>
               {% endif %}
               
