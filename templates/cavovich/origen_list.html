@@ -3,12 +3,13 @@
 {% block content %} 
 {% load static %}
 
-<a href="/origen/create">Agregar</a>
+<a href="/origen/create">Agregar</a><br><br>
 
 {% for origen in origen_list %}
-    <p>{{origen}}</p>
+    {{origen}}
     <a href="/origen/update/{{origen.id}}">Editar</a>
     <a href="/origen/delete/{{origen.id}}">Eliminar</a>
+    <br><br>
 
 {% endfor %}
 
