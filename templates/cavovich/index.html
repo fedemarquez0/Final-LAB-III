@@ -108,9 +108,36 @@
           <div style="cursor: pointer;" onclick="window.location='/vino';" >
             <div class="card shadow-sm h-100">
               <img src="../../static/cavovich/img/agregar.png"  class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title text-center" >Agregar vino</h5>
+                <p class="card-text" style="color:#FFFFFF">
+                  holi
+                </p>
+                <p class="card-text" style="color:#FFFFFF"><small >que onda</small></p>
+              </div>
             </div>
           </div>
         </div>
+
+
+        {% comment %} <div class="col-md-4">
+          <div style="cursor: pointer;" onclick="window.location='/vino';" >
+            <div class="card shadow-sm h-100 text-center">
+              <div class="card-img-top">
+                <i class="fa fa-plus fa-10x" ></i>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">
+                </p>
+                <p class="card-text">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>             {% endcomment %}
+
+
 
         {% for vino in vinos_list %}
             <div class="col-md-4">
@@ -118,7 +145,7 @@
                 <div class="card shadow-sm h-100">
                   <img src="../../media/{{vino.imagen}}"  class="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">{{vino.nombre}}</h5>
+                    <h5 class="card-title"><b>{{vino.nombre}}</b></h5>
                     <p class="card-text">
                       {{vino.bodega}}
                     </p>
