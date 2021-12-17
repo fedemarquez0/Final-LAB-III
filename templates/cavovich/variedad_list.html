@@ -3,12 +3,13 @@
 {% block content %} 
 {% load static %}
 
-<a href="/variedad/create">Agregar</a>
+<a href="/variedad/create">Agregar</a><br><br>
 
 {% for variedad in variedad_list %}
-    <p>{{variedad}}</p>
+    {{variedad}}
     <a href="/variedad/update/{{variedad.id}}">Editar</a>
     <a href="/variedad/delete/{{variedad.id}}">Eliminar</a>
+    <br><br>
 
 {% endfor %}
 

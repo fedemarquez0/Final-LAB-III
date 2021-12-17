@@ -52,7 +52,7 @@
                 </div>
             
             <p class="text-right">
-                <a href="{% url "inicio" %}" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i> Seguir comprando</a>
+                <a href="{% url "inicio" %}" class="btn btn-secondary"><i class="fas fa-shopping-cart"></i> Seguir buscando</a>
                 <form action="{% url 'cart:decrementarStock' %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Finalizar</button>

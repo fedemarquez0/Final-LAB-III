@@ -1,5 +1,10 @@
-<h3>Che vas a eliminar</h3>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" value="Eliminar">
-</form>
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+    <h3>Esta seguro que decea eliminar?</h3>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
+{% endblock %}
