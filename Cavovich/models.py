@@ -30,7 +30,7 @@ class Vino(models.Model):
     nombre = models.CharField(max_length=100)
     bodega = models.ForeignKey(Bodega, on_delete=CASCADE)
     variedad = models.ForeignKey(Variedad, on_delete=CASCADE)
-    cosecha = models.DateField()
+    cosecha = models.PositiveSmallIntegerField()
     origen = models.ForeignKey(Origen, on_delete=CASCADE)
     cantidad = models.PositiveSmallIntegerField()
     codigo = models.BigIntegerField()
