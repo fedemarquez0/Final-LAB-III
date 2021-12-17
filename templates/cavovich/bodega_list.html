@@ -2,14 +2,58 @@
 
 {% block content %} 
 {% load static %}
-
-<a href="/bodega/create">Agregar</a><br><br>
-
-{% for bodega in bodegas_list %}
-    {{bodega}}
-    <a href="/bodega/update/{{bodega.id}}">Editar</a>
-    <a href="/bodega/delete/{{bodega.id}}">Eliminar</a>
-    <br><br>
-{% endfor %}
-
+<main role="main" class="bg-white">
+    <br>
+    <div class="card">
+        <div class="card-header">                
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4 >Bodegas</h4>
+                </div>
+                <div>
+                    <a href="/bodega/create">
+                        <button type="submit" class="btn btn-primary btn-lg" >
+                            <i class="fas fa-plus"></i>
+                        </button> 
+                    </a>
+                </div>
+            </div>            
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for bodega in bodegas_list %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{bodega}}</td>
+                        <td>
+                            <a style="cursor: pointer;" onclick="window.location='/bodega/update/{{bodega.id}}';"> 
+                                <div class="text-muted">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a style="cursor: pointer;" onclick="window.location='/bodega/delete/{{bodega.id}}';"> 
+                                <div class="text-muted">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                            </a>        
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br> 
+</main>
 {% endblock %}
