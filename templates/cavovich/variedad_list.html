@@ -2,15 +2,39 @@
 
 {% block content %} 
 {% load static %}
-
-<a href="/variedad/create">Agregar</a><br><br>
-
-{% for variedad in variedad_list %}
-    {{variedad}}
-    <a href="/variedad/update/{{variedad.id}}">Editar</a>
-    <a href="/variedad/delete/{{variedad.id}}">Eliminar</a>
-    <br><br>
-
-{% endfor %}
-
+<main role="main" class="bg-white">
+    <br>
+    <div class="card">
+        <div class="card-header">                
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4 >Variedades</h4>
+                </div>
+                <div>
+                    <a href="/variedad/create">
+                        <button type="submit" class="btn btn-primary btn-lg" >
+                            <i class="fas fa-plus"></i>
+                        </button> 
+                    </a>
+                </div>
+            </div>            
+        </div>
+        <div class="card-body">
+            {% for variedad in variedad_list %}
+                <p>{{variedad}}</p>
+                <a style="cursor: pointer;" onclick="window.location='/variedad/update/{{variedad.id}};"> 
+                    <div class="text-muted">
+                        <i class="fas fa-edit"></i> Editar
+                    </div>
+                </a>
+                <a style="cursor: pointer;" onclick="window.location='/variedad/delete/{{variedad.id}}';"> 
+                    <div class="text-muted">
+                        <i class="fas fa-trash"></i> Eliminar
+                    </div>
+                </a>        
+            {% endfor %}
+        </div>
+    </div>
+    <br> 
+</main>
 {% endblock %}
