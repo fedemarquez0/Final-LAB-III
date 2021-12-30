@@ -38,7 +38,6 @@ class VinoForm(forms.ModelForm):
     # }))
 
     class Meta:
-        
         model = Vino
         fields = '__all__'
         
