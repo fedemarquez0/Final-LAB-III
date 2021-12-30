@@ -24,10 +24,13 @@
                   </div>
                 </div>     
                 <div class="d-flex justify-content-between">
-                    <div>                        
+                    <div>                                              
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary ">Finalizar</button>
+                        <a href="{% url 'inicio' %}">
+                            <input type="button" class="btn btn-danger float-right" value="Cancelar" >
+                        </a>  
+                        <button type="submit" class="btn btn-primary ">Guardar cambios</button>
                     </div>
                 </div>           
             </form>

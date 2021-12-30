@@ -47,6 +47,12 @@
     height: 35vh;
     object-fit: cover;
   }
+  .card-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
 
 
 
@@ -104,10 +110,16 @@
         
         <a  href="#" id="show"><i class="fa fa-camera"></i> ó escanear código de barras</a>
 
+        {% comment %} <form>
+          <input type="button"
+          onclick="detener();"
+          value="Activar Función">
+        </form> {% endcomment %}
+
         <div id="content" class="col-md-8">
           <div id="element" class="col-md-12" style="display: none;"> 
             <div id="close">
-              <a class="btn btn-small" href="#" id="hide" title="Cerrar">
+              <a class="btn btn-small" href="#" id="hide" title="Cerrar" onclick="">
                 <i class="fas fa-times"></i> Cerrar cámara
               </a>
             </div>
@@ -147,6 +159,8 @@
                   <img src="../../media/{{vino.imagen}}"  class="card-img-top">
                   <div class="card-body" id="cuerpoProductoVariable">
                     <h5 class="card-title"><b>{{vino.nombre}}</b></h5>
+                
+                
                     <p class="card-text">
                       {{vino.bodega}}
                     </p>
@@ -190,6 +204,13 @@
     html5QrcodeScanner.render(onScanSuccess);
 
 
+    function detener(){
+      html5QrCode.stop().then((ignore) => {
+        console.log("se detuvo")
+      }).catch((err) => {
+        console.log("no se detuvo")
+      });
+    }
 
    
 </script>
