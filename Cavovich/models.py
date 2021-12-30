@@ -39,9 +39,12 @@ class Vino(models.Model):
     imagen = models.ImageField(upload_to="catalogo/", default='catalogo/default.png') #se van a guardar en media/catalogo
 
     def stock(this, cantidad):
-        print("Entro nashe")
         this.cantidad -= cantidad
         this.save()
+    
+    def incrementarStock(self, cantidad):
+        self.cantidad += cantidad
+        self.save()
 
 class Comentario(models.Model):
     ojo = models.PositiveSmallIntegerField()

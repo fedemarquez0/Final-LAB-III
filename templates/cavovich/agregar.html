@@ -1,0 +1,13 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<h1>Agregar Vino:</h1>
+<form action="{% url 'agregarVino' %}" method="get">
+    <p>Ingrese el codigo de barras del vino:</p>
+    <input type="number" name="codigo_barras" max="9223372036854775807" required="" id="id_codigo_barras">
+    <button class="btn btn-primary">Agregar</button>
+</form>
+
+{% endblock %}
