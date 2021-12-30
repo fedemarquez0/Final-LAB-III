@@ -14,8 +14,6 @@ from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, 
 
 from cart.forms import CartAddProductForm
 
-from .api import get_valor, get_dolar
-
 # Create your views here.
 
 #Crea el agregar al carrito
@@ -87,7 +85,7 @@ def vinos(request): #Listar (opcion para buscar)
     if request.method == 'GET':
         search = request.GET.get('search')
         if search == None:
-            all_vinos = Vino.objects.all()
+            all_vinos = Vino.objects.all().order_by('nombre')
             return render(request, 'cavovich/index.html', {'vinos_list':all_vinos, 'buscador':''})
         else:
             vinos_list_nombre = Vino.objects.filter(nombre__contains = search)
@@ -97,18 +95,13 @@ def vinos(request): #Listar (opcion para buscar)
             vinos_list_origen = Vino.objects.filter(origen__origen__contains = search)
             vinos_list_codigo = Vino.objects.filter(codigo__contains = search)
             vinos_list_estante = Vino.objects.filter(estante__estante__contains = search)
-            vinos_list = vinos_list_nombre.union(vinos_list_bodega, vinos_list_variedad, vinos_list_cosecha, vinos_list_origen, vinos_list_codigo, vinos_list_estante)
+            vinos_list = vinos_list_nombre.union(vinos_list_bodega, vinos_list_variedad, vinos_list_cosecha, vinos_list_origen, vinos_list_codigo, vinos_list_estante).order_by('nombre')
             return render(request, 'cavovich/index.html', {'vinos_list':vinos_list, 'buscador': search})
 
 class DetalleVino(DetailView): #vino por ID:
     model = Vino
     template_name = 'cavovich/wine.html'
     context_object_name = 'vino'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dolar'] = ("%.2f" % (get_dolar() * float(context['vino'].precio)))
-        return context
 
 def agregarVino(request):
     codigo_barras = request.GET.get('codigo_barras')
