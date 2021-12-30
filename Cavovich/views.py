@@ -14,8 +14,6 @@ from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, 
 
 from cart.forms import CartAddProductForm
 
-from .api import get_valor, get_dolar
-
 # Create your views here.
 
 #Crea el agregar al carrito
@@ -104,11 +102,6 @@ class DetalleVino(DetailView): #vino por ID:
     model = Vino
     template_name = 'cavovich/wine.html'
     context_object_name = 'vino'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dolar'] = ("%.2f" % (get_dolar() * float(context['vino'].precio)))
-        return context
 
 def agregarVino(request):
     codigo_barras = request.GET.get('codigo_barras')
