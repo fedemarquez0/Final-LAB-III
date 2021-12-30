@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models.query import EmptyQuerySet
 
 from .models import Bodega, Comentario, Estante, Origen, Variedad, Vino
 from .forms import VinoForm, BodegaForm, OrigenForm, VariedadForm, EstanteForm, ComentarioForm, LoginForm, PasswordForm
@@ -89,7 +90,14 @@ def vinos(request): #Listar (opcion para buscar)
             all_vinos = Vino.objects.all()
             return render(request, 'cavovich/index.html', {'vinos_list':all_vinos, 'buscador':''})
         else:
-            vinos_list = Vino.objects.filter(nombre__contains = search)
+            vinos_list_nombre = Vino.objects.filter(nombre__contains = search)
+            vinos_list_bodega = Vino.objects.filter(bodega__bodega__contains = search)
+            vinos_list_variedad = Vino.objects.filter(variedad__variedad__contains = search)
+            vinos_list_cosecha = Vino.objects.filter(cosecha__contains = search)
+            vinos_list_origen = Vino.objects.filter(origen__origen__contains = search)
+            vinos_list_codigo = Vino.objects.filter(codigo__contains = search)
+            vinos_list_estante = Vino.objects.filter(estante__estante__contains = search)
+            vinos_list = vinos_list_nombre.union(vinos_list_bodega, vinos_list_variedad, vinos_list_cosecha, vinos_list_origen, vinos_list_codigo, vinos_list_estante)
             return render(request, 'cavovich/index.html', {'vinos_list':vinos_list, 'buscador': search})
 
 class DetalleVino(DetailView): #vino por ID:
@@ -101,6 +109,26 @@ class DetalleVino(DetailView): #vino por ID:
         context = super().get_context_data(**kwargs)
         context['dolar'] = ("%.2f" % (get_dolar() * float(context['vino'].precio)))
         return context
+
+def agregarVino(request):
+    codigo_barras = request.GET.get('codigo_barras')
+    if codigo_barras != None:
+        vino = Vino.objects.filter(codigo = codigo_barras) 
+        if vino.exists():
+            return render(request, 'cavovich/incrementar.html', {'vino':vino.first()})
+        else:
+            return redirect('/vino/') #Falta autocompletar el valor del codigo de barras.
+
+    return render(request, 'cavovich/agregar.html')
+
+def incrementarStockVino(request):
+    cantidad = int(request.GET.get('cantidad'))
+    vinoId = request.GET.get('vinoId')
+    if cantidad != None and vinoId != None:
+        vino = Vino.objects.filter(id = vinoId).first()
+        vino.incrementarStock(cantidad)
+        print(f"vino: {vino}")
+    return redirect('/')
 
 class VinoCreate(LoginRequiredMixin, CreateView): #Crear
     login_url = 'login'

@@ -38,10 +38,12 @@ urlpatterns = [
     path('password/', loginPassword, name='password'),
 
     path('', vinos, name='inicio'),
+    path('vino/agregar/', agregarVino, name='agregarVino'),
     path('vino/', VinoCreate.as_view(), name='crearVino'),
     path('vino/<int:pk>', DetalleVino.as_view()),
     path('vino/update/<int:pk>/', VinoUpdate.as_view()),
     path('vino/delete/<int:pk>/', VinoDelete.as_view()),
+    path('vino/stock/', incrementarStockVino, name='incrementarStock'),    
 
     path('bodega/', BodegaList.as_view(), name='verBodega'),
     path('bodega/create/', BodegaCreate.as_view()),

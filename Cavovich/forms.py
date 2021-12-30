@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import fields
+from django.forms.models import ModelForm
 from .models import Comentario, Vino, Bodega, Origen, Variedad, Estante
 
 class VinoForm(forms.ModelForm):
@@ -64,6 +65,14 @@ class EstanteForm(forms.ModelForm):
         fields = '__all__'
 
 class ComentarioForm(forms.ModelForm):
+
+    # def __init__(self, *args, **kwargs):
+    #     super(ModelForm, self).__init__(**args, **kwargs)
+    #     for visible in self.visible_fields():
+    #         if visible.field.name == campps:
+    #             visible.field.widget.attr['class'] = 'tu_clase'
+
+
     class Meta:
         model = Comentario
         fields = '__all__'

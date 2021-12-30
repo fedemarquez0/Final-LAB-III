@@ -1,0 +1,20 @@
+{% extends 'cavovich/baseIndex.html' %} 
+
+{% block content %} 
+{% load static %}
+
+<form action="{% url 'incrementarStock' %}" method="get">
+    {% csrf_token %}
+    <h1>Datos del vino:</h1> <!-- Mostrar datos del vino lindo (para que el usuario sepa cual vino esta modificando)-->
+    <h2>Nombre: {{vino.nombre}}</h2>
+    <h2>Cantidad actual: {{vino.cantidad}}</h2>
+    <p>Cantidad para agregar: </p>
+    <input type="number" name="cantidad" min="0" required="" id="id_cantidad">
+
+    <input hidden type="number" name="vinoId" value="{{vino.id}}" readonly> <!--Se puede poner como oculto o podemos usar el codigo de barras (me parece mejor usar el ID)-->
+
+    <button class="btn btn-primary">Incrementar</button>
+</form>
+
+
+{% endblock %}
