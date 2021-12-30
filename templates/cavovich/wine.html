@@ -3,6 +3,13 @@
 {% block content %} 
 {% load static %}
 <main role="main ">   
+    <style>
+        .card-img {
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+          }
+    </style>
     <div class="bg-light">
         <br>
         <div class="container card bg-white"> 
@@ -28,8 +35,8 @@
                 <div class="col-sm-6">                    
                     <!-- Imagen del producto -->
                     <div class="">
-                        <div class="card-body">
-                            <img src="/media/{{vino.imagen}}" height="700px" class="card-img">
+                        <div class="card-img">
+                            <img src="/media/{{vino.imagen}}"  class="card-img">
                         </div>
                     </div>                    
                 </div>        
