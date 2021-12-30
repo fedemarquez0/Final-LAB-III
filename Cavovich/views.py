@@ -99,7 +99,7 @@ class DetalleVino(DetailView): #vino por ID:
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['dolar'] = ("%.2f" % (get_valor() * float(context['vino'].precio)))
+        context['dolar'] = ("%.2f" % (get_dolar() * float(context['vino'].precio)))
         return context
 
 class VinoCreate(LoginRequiredMixin, CreateView): #Crear

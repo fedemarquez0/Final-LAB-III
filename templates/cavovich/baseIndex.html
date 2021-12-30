@@ -12,7 +12,7 @@
             <link href="{% static 'cavovich/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
             <link href="{% static 'plugins/fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
             <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
-            
+            <link rel="icon" type="image/x-icon" href="{% static 'cavovich/img/favicon.ico' %}">
             <!-- Custom styles for this template -->
             {% comment %} <link href="../../static/cavovich/css/index.css" rel="stylesheet"> {% endcomment %}
             <!-- Custom styles for this template -->
@@ -198,6 +198,11 @@
                       padding-left: calc(var(--nav-width) + 188px)
                   }
               }
+
+              .oscuro{ 
+                background-color: #1f1f1f; 
+                color: #f1eded; 
+              }
             </style>
 
 
@@ -218,13 +223,15 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'password' %}">Cambiar contraseña</a></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="{% url 'signin' %}"> <i class="fas fa-plus"></i> Crear nueva cuenta</a></li>
+                  <li><a class="dropdown-item" href="{% url 'password' %}"> <i class="fas fa-key"></i> Cambiar contraseña</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="cambiarModo()"> <i class="fas fa-moon"></i> Modo oscuro</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}"> <i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
                 </ul>
               {% endif %}
               
               {% with total_items=cart|length %}
-                <a href="{% url "cart:cart_detail" %}" class="me-3 py-2 text-dark text-decoration-none">
+                <a href="{% url "cart:cart_detail" %}" class="me-3 py-2 text-dark text-decoration-none" id="botonCarrito">
                     <i class="fas fa-shopping-cart"></i> 
                     {% if cart|length > 0 %}                        
                       {{ total_items }} producto{{ total_items|pluralize }}    
@@ -281,7 +288,7 @@
           </nav>
         </div>
         <!--Container Main start-->
-        <div class="height-100 bg-light">
+        <div class="height-100 bg-light" id="contenedorMain">
             {% block content %}
             {% endblock content %}
 
@@ -336,6 +343,39 @@
             
             // Your code to run since DOM is loaded and ready
             });
+
+
+            function cambiarModo() { 
+              var cuerpoweb = document.body; 
+              cuerpoweb.classList.toggle("oscuro"); 
+
+              var header = document.getElementById("header")
+              header.classList.toggle("oscuro"); 
+
+              var header = document.getElementById("header-toggle")
+              header.classList.toggle("oscuro"); 
+
+              var header = document.getElementById("dropdownMenuLink")
+              header.classList.toggle("text-dark"); 
+
+              var header = document.getElementById("botonCarrito")
+              header.classList.toggle("text-dark"); 
+
+              var header = document.getElementById("contenedorMain")
+              header.classList.toggle("bg-light"); 
+
+              var header = document.getElementById("seccionPrincipal")
+              header.classList.toggle("bg-white"); 
+              
+              var header = document.getElementById("contenedorProductos")
+              header.classList.toggle("bg-light");             
+
+              var x = document.getElementById("contenedorProductos").querySelectorAll(".card")
+
+              for (i = 0; i < x.length; i++) {
+                document.getElementsByClassName("card-body")[i].classList.toggle("oscuro");
+              }
+            }
           </script>
         </div>
       </body>
